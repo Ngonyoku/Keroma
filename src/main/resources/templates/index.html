@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+<h1>Menu Items:</h1>
+<ul>
+    <li th:each="menuItem : ${menuItems}">
+        <h3 th:text="${menuItem.name}"></h3>
+        <p th:text="${menuItem.description}"></p>
+        <p th:text="${menuItem.price}"></p>
+    </li>
+
+    <li th:each="category : ${categories}">
+        <h3 th:text="${category.name}"></h3>
+    </li>
+</ul>
+</body>
+</html>
