@@ -17,10 +17,7 @@ public class MenuItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(
-            nullable = false,
-            length = 200
-    )
+    @Column(nullable = false, length = 200)
     private String name;
 
     private String description;
@@ -39,8 +36,12 @@ public class MenuItem {
     )
     private List<Category> categories;
 
+    @OneToMany(mappedBy = "menuItem", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Image> images;
+
     public MenuItem() {
         this.categories = new ArrayList<>();
+        this.images = new ArrayList<>();
     }
 
     public MenuItem(String name, String description, double price) {
@@ -48,15 +49,21 @@ public class MenuItem {
         this.description = description;
         this.price = price;
         this.categories = new ArrayList<>();
+        this.images = new ArrayList<>();
     }
 
-    public MenuItem(Long id, String name, String description, double price, List<Order> orders) {
-        this.id = id;
+    public MenuItem(String name, String description, double price, List<Image> images) {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.orders = orders;
-        this.categories = new ArrayList<>();
+        this.images = images;
     }
-}
 
+    public void addImage(Image image) {
+        if (this.images == null) {
+            this.images = new ArrayList<>();
+        }
+        this.images.add(image);
+    }
+
+}

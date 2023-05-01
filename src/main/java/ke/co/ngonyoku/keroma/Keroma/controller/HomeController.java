@@ -5,6 +5,7 @@ import ke.co.ngonyoku.keroma.Keroma.model.MenuItem;
 import ke.co.ngonyoku.keroma.Keroma.service.CategoryService;
 import ke.co.ngonyoku.keroma.Keroma.service.MenuItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +22,18 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        List<MenuItem> menuItems = menuItemService.getAllMenuItems();
+        Page<MenuItem> menuItems = menuItemService.getAllMenuItems(6); //Only for the Home page
         List<Category> categories = categoryService.getAllCategories();
-
 
         model.addAttribute("menuItems", menuItems);
         model.addAttribute("categories", categories);
         return "index";
+    }
+
+    @GetMapping("/menu")
+    public String menu(Model model) {
+        List<MenuItem> menuItems = menuItemService.getAllMenuItems(); //Returns all the menus
+        model.addAttribute("menuItems", menuItems);
+        return "menu";
     }
 }

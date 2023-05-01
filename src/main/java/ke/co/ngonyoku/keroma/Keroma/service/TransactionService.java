@@ -15,15 +15,11 @@ import java.util.Set;
 
 @Service
 public class TransactionService {
-    private final TransactionRepository transactionRepository;
-
-    private final UserService userService;
+    @Autowired
+    private TransactionRepository transactionRepository;
 
     @Autowired
-    public TransactionService(TransactionRepository transactionRepository, UserService userService) {
-        this.transactionRepository = transactionRepository;
-        this.userService = userService;
-    }
+    private UserService userService;
 
     public Transaction getTransactionById(Long id) {
         Optional<Transaction> transaction = transactionRepository.findById(id);
