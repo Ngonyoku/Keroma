@@ -14,6 +14,7 @@
     <!--    Bootstrap CSS-->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <link rel="stylesheet" th:href="@{/css/customs.css}"/>
 
     <!-- Bootstrap Icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
@@ -23,52 +24,6 @@
           rel="stylesheet" type="text/css"/>
     <!-- SimpleLightbox plugin CSS-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet"/>
-
-    <style>
-    /* Make all the cards have the same height */
-    .card {
-        height: 100%;
-    }
-
-    /* Make all the cards have the same width */
-    .row-cols-1 .card {
-        flex: 1 0 100%;
-    }
-
-    /* Center and crop the images */
-    .crop-img-container {
-        overflow: hidden;
-        position: relative;
-        height: 200px;
-    }
-
-    .crop-img {
-        display: block;
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-/* Card hover animation */
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  transition: all 0.3s ease-in-out;
-}
-
-.contact-icon {
-    font-size: 2rem;
-    padding: 20px;
-    color: red;
-  }
-
-
-
-    </style>
 </head>
 <body>
 <!--NavBar-->
@@ -127,7 +82,7 @@
 <!--About End!-->
 
 <!--Menu-->
-<section class="page-section jumbotron-fluid bg-light" id="menu">
+<section class="page-section jumbotron-fluid" id="menu" style="background-color: #EDEDED;">
     <div class="container px-4 px-lg-5">
         <div class="container">
             <h2 class="text-primary text-center mt-0">Menu</h2>
@@ -163,7 +118,7 @@
             <br>
             <div class="col-lg-8 align-self-baseline">
                 <!--TODO: Add Menu Page where customers can view -->
-                <a class="btn btn-primary btn-xl" href="/menu">View More!</a>
+                <button class="btn btn-primary btn-xl" id="view-more-btn">View More!</button>
             </div>
         </div>
     </div>
@@ -171,75 +126,126 @@
 <!--Menu End!-->
 
 <!--Contact-->
-<section class="page-section jumbotron-fluid" id="contact">
-    <div class="container px-4 px-lg-5">
+<section class="page-section jumbotron-fluid bg-dark" id="contact">
+    <div class="container-fluid px-4 px-lg-5 text-light">
         <div class="container">
             <h2 class="text-primary text-center mt-0">Contact Us</h2>
-            <p class="text-muted text-center">Have any complaint, recommendation or any type of feedback? You can reach
+            <p class="text-center">Have any complaint, recommendation or any type of feedback? You can reach
                 us!</p>
             <hr>
-
-            <!-- Map-->
-            <div class="mt-5 mb-3">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1994.6406252333373!2d36.377586256093965!3d0.04015619912743734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1829b82d2d9c6e07%3A0xe44f3a3b3d20c93!2sNyahururu%2C%20Kenya!5e0!3m2!1sen!2ske!4v1623702318228!5m2!1sen!2ske"
-                        width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
-            </div>
-            <br>
             <div class="row">
-                <div class="col-lg-6 mx-auto">
-                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua.</p>
-                    <ul class="list-unstyled mb-0">
-                        <li>
-                            <i class="bi bi-envelope-fill contact-icon"></i>
-                            <h6>
-                                <b>Email</b> <a href="mailto:kbanda.official@gmail.com">kbanda.official@gmail.com</a>
-                            </h6>
-                        </li>
-                        <li>
+                <div class="col-lg-12 mb-3">
+                    <div class="row">
+                        <!-- Contact form -->
+                        <div class="col-lg-4 mb-3">
+                            <form method="post" action="/contact">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email address</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea class="form-control" id="message" name="message" rows="5"
+                                              required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Send Message</button>
+                            </form>
+                        </div>
+
+                        <!-- Contact information -->
+                        <div class="col-lg-4 mb-3">
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <i class="bi bi-envelope-fill contact-icon"></i>
+                                    <h6>
+                                        <b>Email</b> <a href="mailto:kbanda.official@gmail.com">kbanda.official@gmail.com</a>
+                                    </h6>
+                                </li>
+                                <li>
+                                    <i class="bi bi-telephone-fill contact-icon"></i>
+                                    <h6>
+                                        <b>Phone Number</b> +254 707670113
+                                    </h6>
+                                </li>
+                                <li>
+                                    <i class="bi bi-geo-alt-fill contact-icon"></i>
+                                    <h6>
+                                        <b>Location</b> Nyahururu, Kenya
+                                    </h6>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Opening hours -->
+                        <div class="col-lg-4 mb-3">
                             <i class="bi bi-telephone-fill contact-icon"></i>
                             <h6>
-                                <b> Phone Number</b> +254 707670113
+                                <b>Opening Hours</b>
                             </h6>
-                        </li>
-                        <li>
-                            <i class="bi bi-geo-alt-fill contact-icon"></i>
-                            <h6>
-                                <b>Location</b> Nyahururu, Kenya
-                            </h6>
-                        </li>
-                        <li>
-                            <i class="bi bi-clock-fill contact-icon"></i>
-                            <h6>
-                                <b>Opening Hours</b> Monday - Saturday: 10:00 AM to 9:00 PM
-                            </h6>
-                        </li>
-                    </ul>
+                            <table class="table table-borderless text-light table-sm mt-3">
+                                <thead class="text-primary">
+                                <tr>
+                                    <th scope="col">Day</th>
+                                    <th scope="col">Opening Hours</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Monday</td>
+                                    <td>10:00 AM to 9:00 PM</td>
+                                </tr>
+                                <tr>
+                                    <td>Tuesday</td>
+                                    <td>10:00 AM to 9:00 PM</td>
+                                </tr>
+                                <tr>
+                                    <td>Wednesday</td>
+                                    <td>10:00 AM to 9:00 PM</td>
+                                </tr>
+                                <tr>
+                                    <td>Thursday</td>
+                                    <td>10:00 AM to 9:00 PM</td>
+                                </tr>
+                                <tr>
+                                    <td>Friday</td>
+                                    <td>10:00 AM to 9:00 PM</td>
+                                </tr>
+                                <tr>
+                                    <td>Saturday</td>
+                                    <td>10:00 AM to 9:00 PM</td>
+                                </tr>
+                                <tr>
+                                    <td>Sunday</td>
+                                    <td>Closed</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-6 mx-auto">
-                    <form method="post" action="/contact">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
+            </div>
+            <div class="row">
+                <!-- Map-->
+                <div class="col-lg-12 mb-3">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1994.6406252333373!2d36.377586256093965!3d0.04015619912743734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1829b82d2d9c6e07%3A0xe44f3a3b3d20c93!2sNyahururu%2C%20Kenya!5e0!3m2!1sen!2ske!4v1623702318228!5m2!1sen!2ske"
+                            width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 <!--Contact End!-->
-
+<footer>
+    <div class="container-fluid">
+        <div class="col-md-12 copy">
+            <p class="text-center"> © Copyright 2021 - Keroma All rights reserved. </p>
+        </div>
+    </div>
+</footer>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- SimpleLightbox plugin JS-->

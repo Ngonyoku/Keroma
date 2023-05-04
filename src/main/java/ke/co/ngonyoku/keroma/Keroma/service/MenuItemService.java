@@ -1,6 +1,7 @@
 package ke.co.ngonyoku.keroma.Keroma.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import ke.co.ngonyoku.keroma.Keroma.model.Category;
 import ke.co.ngonyoku.keroma.Keroma.model.MenuItem;
 import ke.co.ngonyoku.keroma.Keroma.repository.MenuItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +18,11 @@ import java.util.Optional;
 public class MenuItemService {
     @Autowired
     private MenuItemRepository menuItemRepository;
+
+    @Autowired
+    public MenuItemService(MenuItemRepository menuItemRepository) {
+        this.menuItemRepository = menuItemRepository;
+    }
 
     public MenuItem saveMenuItem(MenuItem menuItem) {
         return menuItemRepository.save(menuItem);
@@ -63,5 +70,13 @@ public class MenuItemService {
 
     public List<MenuItem> getMenuItemsByPrice(double price) {
         return menuItemRepository.findByPrice(price);
+    }
+
+//    public List<MenuItem> getMenuItemsByCategory(Category category) {
+//        return menuItemRepository.findByCategory(category);
+//    }
+
+    public List<MenuItem> getMenuItemsByCategoryName(String categoryName) {
+        return menuItemRepository.findByCategoryName(categoryName);
     }
 }

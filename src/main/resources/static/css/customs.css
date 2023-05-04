@@ -1,0 +1,79 @@
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('/fonts/instrument-serif.woff2') format('woff2'),
+       url('/fonts/instrument-serif.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat Alternates';
+  src: url('../assets/fonts/MontserratAlternates-Bold') format('truetype'),
+       url('../assets/fonts/MontserratAlternates-Black') format('truetype'),
+       url('../assets/fonts/MontserratAlternates-Light') format('truetype'),
+       url('../assets/fonts/MontserratAlternates-Italic') format('truetype'),
+       url('../assets/fonts/MontserratAlternates-Medium') format('truetype'),
+       url('../assets/fonts/MontserratAlternates-Thin') format('truetype'),
+       url('../assets/fonts/MontserratAlternates-Regular') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Montserrat Alternates', serif;
+}
+
+
+h1, h2, h3 {
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+p {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-weight: 100; /* thin */
+}
+
+
+
+    /* Make all the cards have the same height */
+    .card {
+        height: 100%;
+    }
+
+    /* Make all the cards have the same width */
+    .row-cols-1 .card {
+        flex: 1 0 100%;
+    }
+
+    /* Center and crop the images */
+    .crop-img-container {
+        overflow: hidden;
+        position: relative;
+        height: 200px;
+    }
+
+    .crop-img {
+        display: block;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+
+
+/* Card hover animation */
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.contact-icon {
+    font-size: 2rem;
+    padding: 20px;
+    color: red;
+  }
